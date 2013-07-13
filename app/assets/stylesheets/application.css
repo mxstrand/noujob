@@ -11,15 +11,3 @@
  *= require_self
  *= require_tree .
  */
-
-body {
-	min-width: 900px;
-	text-align: center;
-}
-
-#main-wrapper {
-	width: 900px;
-	text-align: left;
-	margin-right: auto;
-	margin-left: auto;
-}
