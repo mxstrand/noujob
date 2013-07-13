@@ -6,17 +6,43 @@ class WelcomeController < ApplicationController
 
 	def match
 		u = Url.new
-		u.job_seeker_url = params[:job_seeker_url]
-		u.job_descrip_url = params[:job_descrip_url]
+		u.job_seeker_url = fix_http(params[:job_seeker_url])
+		u.job_descrip_url = fix_http(params[:job_descrip_url])
 		u.save
 
-		@job_seeker_url_words = read_and_parse_page(u.job_seeker_url, 20)
-		@job_descrip_url_words = read_and_parse_page(u.job_descrip_url, 20)
+		@job_seeker_url_words = read_and_parse_page(u.job_seeker_url)
+		@job_descrip_url_words = read_and_parse_page(u.job_descrip_url)
+
+		@job_seeker_url_words = filter_stop_words(@job_seeker_url_words)
+		@job_descrip_url_words = filter_stop_words(@job_descrip_url_words)
+
+		@job_seeker_url_words = @job_seeker_url_words.slice(0, 25)
+		@job_descrip_url_words = @job_descrip_url_words.slice(0, 25)
 	end
 
 end
 
-def read_and_parse_page(url, limit)
+def fix_http(url)
+	if (url.slice(0, 4) != "http")
+		url = "http://" + url
+	end
+	url
+end
+
+def filter_stop_words(words_array)
+	stop_words = ["a", "to", "the", "and", "in", "on", 
+		"for", "you", "at", "no", "yes", "of", "now", 
+		"more", "out", "can", "that", "says", "with",
+		"will", "sorry", "only", "his", "are", "sat",
+		"all", "nbsp", "do", "sign", "near"]
+	filtered_words_array = words_array.reject do |e|
+		# binding.pry
+		stop_words.include? e[0].to_s.downcase
+	end
+	filtered_words_array
+end
+
+def read_and_parse_page(url)
   # open-uri is part of the Ruby Standard Library
   # is an easy-to-use wrapper for net/http, net/https and net/ftp
   # use it to open an http, https or ftp URL as though it were a file
@@ -80,9 +106,9 @@ def read_and_parse_page(url, limit)
   # the sort method uses the <=> comparison operator
   # the reuslting array will look like [k1, v1, k2, v2, k3, v3]
   wordCountPairArray = wordCountHash.sort do |left, right|
-    # Question for Hamid?  I still don't totally understand the below line.
+    # Question for Hamid?  I still don"t totally understand the below line.
     right[1] <=> left[1]
   end
 
-  wordCountPairArray.slice(0, limit)
+  wordCountPairArray
 end
