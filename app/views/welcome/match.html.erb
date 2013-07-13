@@ -13,7 +13,7 @@
 				<%
 					# Calculate with
 					# First maximum width
-					width = ((element[1] * 400) / @highest_count).to_i
+					width = ((element[1] * 300) / @highest_count).to_i
 					# See if it's too small then give it a minimum width
 					if (width < 30)
 						width = 30
@@ -21,7 +21,7 @@
 				%>
 				<div style="height: 20px; float: right; text-align: right;">
 					<div style="height: 20px; width: <%= width %>px; background-color: <%= cycle("#00bfff", "#1e90ff") %>; float: right;">
-						<div style="float: left; padding-left: 5px; padding-top: 2px;">
+						<div style="float: left; padding-left: 5px; padding-top: 2px; color: white;">
 							<%= element[1] %>
 						</div>
 					</div>
@@ -40,14 +40,14 @@
 				<%
 					# Calculate with
 					# First maximum width
-					width = ((element[1] * 400) / @highest_count).to_i
+					width = ((element[1] * 300) / @highest_count).to_i
 					# See if it's too small then give it a minimum width
 					if (width < 30)
 						width = 30
 					end
 				%>
 				<div style="height: 20px; width: <%= width %>px; background-color: <%= cycle("#1e90ff", "#00bfff") %>; float: left;">
-					<div style="float: right; padding-right: 5px; padding-top: 2px;">
+					<div style="float: right; padding-right: 5px; padding-top: 2px; color: white;">
 						<%= element[1] %>
 					</div>
 				</div>
@@ -55,4 +55,5 @@
 			</div>
 		<% end %>
 	</div>
+	<div style="clear: both;"></div>
 </div>
