@@ -1,7 +1,7 @@
-<%= form_for @comparison do |f| %>
-  <%= f.label :job_seeker_url, "Job Seeker URL" %>
-  <%= f.text_field :job_seeker_url %>
-  <%= f.label :job_descrip_url, "Job Description URL" %>
-  <%= f.text_field :job_descrip_url %>
-  <%= f.submit "Go!" %>
+<%= form_tag "/welcome/update2" do %>
+  <%= label_tag :job_seeker_url, "Job Seeker URL" %>
+  <%= text_field_tag :job_seeker_url %>
+  <%= label_tag :job_descrip_url, "Job Description URL" %>
+  <%= text_field_tag :job_descrip_url %>
+  <%= submit_tag "Go!" %>
 <% end %>
