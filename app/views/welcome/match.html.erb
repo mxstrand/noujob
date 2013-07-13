@@ -15,10 +15,10 @@
 				<%
 					# Calculate with
 					# First maximum width
-					width = ((element[1] * 300) / @highest_count).to_i
+					width = ((element[1] * 340) / @highest_count).to_i
 					# See if it's too small then give it a minimum width
-					if (width < 30)
-						width = 30
+					if (width < 25)
+						width = 25
 					end
 				%>
 				<div style="height: 30px; float: right; text-align: right;">
@@ -44,10 +44,10 @@
 				<%
 					# Calculate with
 					# First maximum width
-					width = ((element[1] * 300) / @highest_count).to_i
+					width = ((element[1] * 340) / @highest_count).to_i
 					# See if it's too small then give it a minimum width
-					if (width < 30)
-						width = 30
+					if (width < 25)
+						width = 25
 					end
 				%>
 				<div style="height: 30px; width: <%= width %>px; background-color: <%= cycle("#1e90ff", "#00bfff") %>; float: left; border-radius: 3px; box-shadow: 0px 0px 2px #CCCCCC;">

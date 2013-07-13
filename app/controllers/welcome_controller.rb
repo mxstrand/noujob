@@ -52,7 +52,8 @@ def filter_stop_words(words_array)
 		"all", "nbsp", "do", "sign", "near", "i m", "is",
 		"use", "as", "also", "an", "this", "name", "who",
 		"by", "i", "or", "may", "form", "may", "have",
-		"been", "our", "us", "say", "get", "other"]
+		"been", "our", "us", "say", "get", "other",
+		"has", "x"]
 	filtered_words_array = words_array.reject do |e|
 		# binding.pry
 		stop_words.include? e[0].to_s.downcase
@@ -84,10 +85,15 @@ def read_and_parse_page(url)
   
   # split contents using a space delimiter and place results into an array
   wordsArray = contents.split(" ")
+
+  # remove 's etc.
+  wordsArray.map! do |word|
+    word.gsub(/\'.*$/i, " ").strip
+  end
   
   # remove all non alpha numeric characters from words
   wordsArray.map! do |word|
-    word.gsub(/[^a-z]/i, " ").strip
+    word.gsub(/[^a-z\-]/i, " ").strip
   end
 
   # remove empty elements
