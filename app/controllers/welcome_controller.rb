@@ -4,6 +4,9 @@ class WelcomeController < ApplicationController
   		@comparison = Url.new
 	end
 
+  def aboutus
+  end
+
 	def match
 		u = Url.new
 		u.job_seeker_url = fix_http(params[:job_seeker_url])

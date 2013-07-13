@@ -3,7 +3,7 @@ Jobsreader::Application.routes.draw do
 
   root :to => "welcome#index"
   match '/welcome/match' => 'welcome#match'
-
+  get 'welcome/aboutus' => 'welcome#aboutus'
   #
   # The priority is based upon order of creation:
   # first created -> highest priority.
