@@ -16,10 +16,32 @@ def read_and_parse_page
 
   file = open("http://www.linkedin.com/jobs?viewJob=&jobId=6273622&trk=vsrp_jobs_res_name&trkInfo=VSRPsearchId%3A179152631373218887854%2CVSRPtargetId%3A6273622%2CVSRPcmpt%3Aprimary")
   contents = file.read
-  #strip HTML tags
-  no_html_content = ActionController::Base.helpers.strip_tags(contents)
+  
+  # strip script tags and everything in between
+  contents.gsub!(/<script.*?script>/im, " ")
+  
+  # strip style tags and everything in between
+  contents.gsub!(/<style.*?style>/im, " ")
+  
+  # strip all html, rails strip_tags is lame for what we want
+  # it leaves some tags in
+  contents.gsub!(/<\/?[^>]+>/im, " ")
+
+  # remove all urls
+  contents.gsub!(/https?:\/\/[^\s]*/, " ")
+
   # split contents using a space delimiter and place results into an array
-  wordsArray = no_html_content.split(' ')
+  wordsArray = contents.split(" ")
+
+  # remove all non alpha numeric characters from words
+  wordsArray.map! do |word|
+    word.gsub(/[^a-z]/i, " ").strip
+  end
+
+  # remove empty elements
+  wordsArray.reject! do |word|
+    word.empty?
+  end
 
   # while strip_tags is working, some metadata remains - possibly javascript?
   # as such, we may still need a manual blacklist array for clean up
@@ -37,9 +59,9 @@ def read_and_parse_page
 
   # checks if the word key is already present in the hash value?
   if wordCountHash.has_key?(word)
-    # if true, increment by 1
-    # Question for Hamid?  what specifically are we incrementing by 1 or seeting = 1?
-    wordCountHash[word] += 1
+      # if true, increment by 1
+      # Question for Hamid?  what specifically are we incrementing by 1 or seeting = 1?
+      wordCountHash[word] += 1
     else
       # if false, start at 1
       wordCountHash[word] = 1
@@ -50,12 +72,12 @@ def read_and_parse_page
   # the sort method uses the <=> comparison operator
   # the reuslting array will look like [k1, v1, k2, v2, k3, v3]
   wordCountPairArray = wordCountHash.sort do |left, right|
-  # Question for Hamid?  I still don't totally understand the below line.
-  right[1] <=> left[1]
+    # Question for Hamid?  I still don't totally understand the below line.
+    right[1] <=> left[1]
   end
 
   # here we print adjacent array values on a single line in the terminal
   wordCountPairArray.each do |element|
-  puts "#{element[1]} \t\t #{element[0]}"
+    puts "#{element[1]} \t\t #{element[0]}"
   end
 end
