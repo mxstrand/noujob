@@ -26,13 +26,13 @@ def read_and_parse_page
   # strip all html, rails strip_tags is lame for what we want
   # it leaves some tags in
   contents.gsub!(/<\/?[^>]+>/im, " ")
-
+  
   # remove all urls
   contents.gsub!(/https?:\/\/[^\s]*/, " ")
-
+  
   # split contents using a space delimiter and place results into an array
   wordsArray = contents.split(" ")
-
+  
   # remove all non alpha numeric characters from words
   wordsArray.map! do |word|
     word.gsub(/[^a-z]/i, " ").strip
