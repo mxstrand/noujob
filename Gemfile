@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 ruby '1.9.3' #explicity state 1.9.3 so Heroku won't upgrade to 2.0.0
+
 gem 'rails', '3.2.13'
-gem 'simple_form'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -21,11 +21,12 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
+  gem 'twitter-bootstrap-rails'
+  gem "therubyracer" #required for bootstrap.
+  gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 end
 
 gem 'jquery-rails'

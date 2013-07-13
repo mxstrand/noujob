@@ -5,12 +5,46 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-</head>
-<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/">NouJob <i class="icon-star icon-white"></i></a>
+            <ul class="nav" role="navigation">
+              <li><%= link_to "About Us", "/welcome/aboutus" %></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 
-<%= yield %>
+    <div class="container">
+    <% [:notice, :error, :alert].each do |level| %>
+      <% unless flash[level].blank? %>
+        <div class="alert alert-<%= flash_class(level) %>">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= flash[level] %>
+        </div>
+      <% end %>
+    <% end %>
+    <br />
+    <%= yield %>
+    <%= yield :javascript %>
+    </div>
 
-</body>
+    <footer class="footer">
+      <div class="container">
+        <p>Created by <a href="https://twitter.com/mxstrand" target="_blank">@mxstrand</a> and <a href="https://twitter.com/codingrecipes" target="_blank">@codingrecipes</a>.</p>
+      </div>
+    </footer>
+  </body>
 </html>
 
 <%-# Google Analytics -%>
@@ -22,5 +56,4 @@
 
   ga('create', 'UA-42438047-1', 'noujob.com');
   ga('send', 'pageview');
-
 </script>
