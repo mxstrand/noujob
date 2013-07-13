@@ -53,7 +53,7 @@ def filter_stop_words(words_array)
 		"use", "as", "also", "an", "this", "name", "who",
 		"by", "i", "or", "may", "form", "may", "have",
 		"been", "our", "us", "say", "get", "other",
-		"has", "x"]
+		"has", "x", "from", "-p"]
 	filtered_words_array = words_array.reject do |e|
 		# binding.pry
 		stop_words.include? e[0].to_s.downcase

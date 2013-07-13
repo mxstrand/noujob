@@ -4,60 +4,74 @@
 		<strong><em><%= @job_seeker_url_words.count %> most appearing words</em></strong>
 	</div>
 	<br /><br />
+	<script>
+		$(document).ready(function() {
+			$(".sortable").sortable();
+			$(".sortable").disableSelection();
+		});
+	</script>
 	<div style="float: left; width: 50%;">
-		<% @job_seeker_url_words.each do |element| %>
-			<div>
-				<div style="float: right; height: 35px; width: 100px; text-align: left; padding-left: 10px;">
-					<div style="padding-top: 5px;">
-						<%= element[0] %>
-					</div>
-				</div>
-				<%
-					# Calculate with
-					# First maximum width
-					width = ((element[1] * 340) / @highest_count).to_i
-					# See if it's too small then give it a minimum width
-					if (width < 25)
-						width = 25
-					end
-				%>
-				<div style="height: 30px; float: right; text-align: right;">
-					<div style="height: 30px; width: <%= width %>px; background-color: <%= cycle("#00bfff", "#1e90ff") %>; float: right; border-radius: 3px; box-shadow: 0px 0px 2px #CCCCCC;">
-						<div style="float: left; padding-left: 5px; padding-top: 5px; color: white;">
-							<%= element[1] %>
+		<ul class="sortable" style="list-style-type: none;">
+			<% @job_seeker_url_words.each do |element| %>
+				<li>
+					<div>
+						<div style="float: right; height: 35px; width: 100px; text-align: left; padding-left: 10px;">
+							<div style="padding-top: 5px;">
+								<%= element[0] %>
+							</div>
 						</div>
+						<%
+							# Calculate with
+							# First maximum width
+							width = ((element[1] * 340) / @highest_count).to_i
+							# See if it's too small then give it a minimum width
+							if (width < 25)
+								width = 25
+							end
+						%>
+						<div style="height: 30px; float: right; text-align: right;">
+							<div style="height: 30px; width: <%= width %>px; background-color: <%= cycle("#00bfff", "#1e90ff") %>; float: right; border-radius: 3px; box-shadow: 0px 0px 2px #CCCCCC;">
+								<div style="float: left; padding-left: 5px; padding-top: 5px; color: white;">
+									<%= element[1] %>
+								</div>
+							</div>
+						</div>
+						<div style="clear: both;"></div>
 					</div>
-				</div>
-				<div style="clear: both;"></div>
-			</div>
-		<% end %>
+				</li>
+			<% end %>
+		</ul>
 	</div>
 
 	<div style="float: right; width: 50%;">
-		<% @job_descrip_url_words.each do |element| %>
-			<div>
-				<div style="float: left; height: 35px; width: 100px; text-align: right; padding-right: 10px;">
-					<div style="padding-top: 5px;">
-						<%= element[0] %>
+		<ul class="sortable" style="list-style-type: none;">
+			<% @job_descrip_url_words.each do |element| %>
+				<li>
+					<div>
+						<div style="float: left; height: 35px; width: 100px; text-align: right; padding-right: 10px;">
+							<div style="padding-top: 5px;">
+								<%= element[0] %>
+							</div>
+						</div>
+						<%
+							# Calculate with
+							# First maximum width
+							width = ((element[1] * 340) / @highest_count).to_i
+							# See if it's too small then give it a minimum width
+							if (width < 25)
+								width = 25
+							end
+						%>
+						<div style="height: 30px; width: <%= width %>px; background-color: <%= cycle("#1e90ff", "#00bfff") %>; float: left; border-radius: 3px; box-shadow: 0px 0px 2px #CCCCCC;">
+							<div style="float: right; padding-right: 5px; padding-top: 5px; color: white;">
+								<%= element[1] %>
+							</div>
+						</div>
+						<div style="clear: both;"></div>
 					</div>
-				</div>
-				<%
-					# Calculate with
-					# First maximum width
-					width = ((element[1] * 340) / @highest_count).to_i
-					# See if it's too small then give it a minimum width
-					if (width < 25)
-						width = 25
-					end
-				%>
-				<div style="height: 30px; width: <%= width %>px; background-color: <%= cycle("#1e90ff", "#00bfff") %>; float: left; border-radius: 3px; box-shadow: 0px 0px 2px #CCCCCC;">
-					<div style="float: right; padding-right: 5px; padding-top: 5px; color: white;">
-						<%= element[1] %>
-					</div>
-				</div>
-				<div style="clear: both;"></div>
-			</div>
-		<% end %>
+				</li>
+			<% end %>
+		</ul>
 	</div>
 	<div style="clear: both;"></div>
 </div>
