@@ -7,8 +7,10 @@
 	<div style="float: left; width: 50%;">
 		<% @job_seeker_url_words.each do |element| %>
 			<div>
-				<div style="float: right; height: 30px; width: 100px; text-align: left; padding-left: 10px;">
-					<%= element[0] %>
+				<div style="float: right; height: 35px; width: 100px; text-align: left; padding-left: 10px;">
+					<div style="padding-top: 5px;">
+						<%= element[0] %>
+					</div>
 				</div>
 				<%
 					# Calculate with
@@ -19,9 +21,9 @@
 						width = 30
 					end
 				%>
-				<div style="height: 20px; float: right; text-align: right;">
-					<div style="height: 20px; width: <%= width %>px; background-color: <%= cycle("#00bfff", "#1e90ff") %>; float: right;">
-						<div style="float: left; padding-left: 5px; padding-top: 2px; color: white;">
+				<div style="height: 30px; float: right; text-align: right;">
+					<div style="height: 30px; width: <%= width %>px; background-color: <%= cycle("#00bfff", "#1e90ff") %>; float: right;">
+						<div style="float: left; padding-left: 5px; padding-top: 5px; color: white;">
 							<%= element[1] %>
 						</div>
 					</div>
@@ -34,8 +36,10 @@
 	<div style="float: right; width: 50%;">
 		<% @job_descrip_url_words.each do |element| %>
 			<div>
-				<div style="float: left; height: 30px; width: 100px; text-align: right; padding-right: 10px;">
-					<%= element[0] %>
+				<div style="float: left; height: 35px; width: 100px; text-align: right; padding-right: 10px;">
+					<div style="padding-top: 5px;">
+						<%= element[0] %>
+					</div>
 				</div>
 				<%
 					# Calculate with
@@ -46,8 +50,8 @@
 						width = 30
 					end
 				%>
-				<div style="height: 20px; width: <%= width %>px; background-color: <%= cycle("#1e90ff", "#00bfff") %>; float: left;">
-					<div style="float: right; padding-right: 5px; padding-top: 2px; color: white;">
+				<div style="height: 30px; width: <%= width %>px; background-color: <%= cycle("#1e90ff", "#00bfff") %>; float: left;">
+					<div style="float: right; padding-right: 5px; padding-top: 5px; color: white;">
 						<%= element[1] %>
 					</div>
 				</div>
