@@ -11,8 +11,8 @@
 					<%= element[0] %>
 				</div>
 				<div style="height: 20px; float: right; text-align: right;">
-					<div style="height: 20px; width: <%= (15.to_f * element[1]).to_i %>px; background-color: red; float: right;">
-						<div style="float: left; padding-left: 10px; padding-top: 2px;">
+					<div style="height: 20px; width: <%= (15.to_f * element[1]).to_i %>px; background-color: <%= cycle("#00bfff", "#1e90ff") %>; float: right;">
+						<div style="float: left; padding-left: 5px; padding-top: 2px;">
 							<%= element[1] %>
 						</div>
 					</div>
@@ -28,8 +28,8 @@
 				<div style="float: left; height: 30px; width: 100px; text-align: right; padding-right: 10px;">
 					<%= element[0] %>
 				</div>
-				<div style="height: 20px; width: <%= (15.to_f * element[1]).to_i %>px; background-color: red; float: left;">
-					<div style="float: right; padding-right: 10px; padding-top: 2px;">
+				<div style="height: 20px; width: <%= (15.to_f * element[1]).to_i %>px; background-color: <%= cycle("#1e90ff", "#00bfff") %>; float: left;">
+					<div style="float: right; padding-right: 5px; padding-top: 2px;">
 						<%= element[1] %>
 					</div>
 				</div>
