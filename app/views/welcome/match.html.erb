@@ -1,0 +1,16 @@
+<h1>Yeeehaaaa!</h1>
+<div>
+	<% @job_seeker_url_words.each do |element| %>
+		<div>
+			<div style="float: left; height: 30px; width: 80px; text-align: right; padding-right: 10px;">
+				<%= element[0] %>
+			</div>
+			<div style="height: 20px; width: <%= (20.to_f * element[1]).to_i %>px; background-color: red; float: left;">
+				<div style="float: right; padding-right: 10px; padding-top: 2px;">
+					<%= element[1] %>
+				</div>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+	<% end %>
+</div>
