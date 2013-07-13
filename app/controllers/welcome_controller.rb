@@ -10,8 +10,8 @@ class WelcomeController < ApplicationController
 		u.job_descrip_url = params[:job_descrip_url]
 		u.save
 
-		@job_seeker_url_words = read_and_parse_page(u.job_seeker_url, 25)
-		@job_descrip_url_words = read_and_parse_page(u.job_descrip_url, 25)
+		@job_seeker_url_words = read_and_parse_page(u.job_seeker_url, 20)
+		@job_descrip_url_words = read_and_parse_page(u.job_descrip_url, 20)
 	end
 
 end
