@@ -18,6 +18,18 @@ class WelcomeController < ApplicationController
 
 		@job_seeker_url_words = @job_seeker_url_words.slice(0, 25)
 		@job_descrip_url_words = @job_descrip_url_words.slice(0, 25)
+
+		@highest_count = 0
+		@job_seeker_url_words.each do |w|
+			if w[1] > @highest_count
+				@highest_count = w[1]
+			end
+		end
+		@job_descrip_url_words.each do |w|
+			if w[1] > @highest_count
+				@highest_count = w[1]
+			end
+		end
 	end
 
 end
@@ -91,16 +103,17 @@ def read_and_parse_page(url)
   # in this case, the hash key is the word and the
   # value is the index
   wordsArray.each_with_index do |word, index|
+  	word.downcase!
 
-  # checks if the word key is already present in the hash value?
-  if wordCountHash.has_key?(word)
-      # if true, increment by 1
-      # Question for Hamid?  what specifically are we incrementing by 1 or seeting = 1?
-      wordCountHash[word] += 1
-    else
-      # if false, start at 1
-      wordCountHash[word] = 1
-    end
+	# checks if the word key is already present in the hash value?
+	if wordCountHash.has_key?(word)
+		# if true, increment by 1
+		# Question for Hamid?  what specifically are we incrementing by 1 or seeting = 1?
+		wordCountHash[word] += 1
+	else
+		# if false, start at 1
+		wordCountHash[word] = 1
+	end
   end
 
   # instantiate a new array, and sort our hash
