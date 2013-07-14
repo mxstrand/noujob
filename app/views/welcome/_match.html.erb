@@ -1,7 +1,9 @@
-<h1>Job Candidate to Open Position Comparison</h1>
+<h3>Job Seeker to Open Position Comparison</h3>
 <div>
-	<div style="text-align: center;">
-		<strong><em><%= @job_seeker_url_words.count %> most appearing words</em></strong>
+	<div style="text-align: left;">
+		<strong><em><%= @job_seeker_url_words.count %> most frequently appearing words</em></strong>
+		<br>
+		Note:  Stop words such as [the, and, is, I,] have been removed.
 	</div>
 	<br /><br />
 	<script>
