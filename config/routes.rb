@@ -2,7 +2,8 @@ Jobsreader::Application.routes.draw do
   resources :urls
 
   root :to => "welcome#index"
-  match '/welcome/match' => 'welcome#match'
+  match '/welcome/match_urls' => 'welcome#match_urls'
+  match '/welcome/match_content' => 'welcome#match_content'
   get 'welcome/aboutus' => 'welcome#aboutus'
   #
   # The priority is based upon order of creation:
