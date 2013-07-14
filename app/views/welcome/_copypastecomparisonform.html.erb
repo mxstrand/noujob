@@ -1,12 +1,12 @@
 <%= form_tag "/welcome/match_content" do %>
 	<div class="span3">
-      <h3>Compare Raw Text</h3>
+      <h3 class="text-info">Compare Raw Text</h3>
 	  <%= label_tag :job_seeker_profile, "Job Seeker Profile" %>
 	  <%= text_area_tag :job_seeker_profile, nil, rows: 10, class: "span3" %>
-	  <%= submit_tag "Compare!", :class => 'btn btn-success' %>
 	</div>
 	<div class="span3">
 	  <h3 style="visibility: hidden;">-</h3>
+	  <%= submit_tag "Compare!", :class => 'btn btn-success form-button' %>
 	  <%= label_tag :job_descrip, "Job Description" %>
 	  <%= text_area_tag :job_descrip, nil, rows: 10, class: "span3" %>
 	</div>

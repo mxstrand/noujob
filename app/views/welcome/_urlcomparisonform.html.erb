@@ -1,8 +1,8 @@
 <%= form_tag "/welcome/match_urls" do %>
-  <h3>Compare Links</h3>
+  <h3 class="text-info">Compare Links</h3>
+  <%= submit_tag "Compare!", :class => 'btn btn-success pull-right form-button' %>
   <%= label_tag :job_seeker_url, "Job Seeker URL" %>
   <%= text_field_tag :job_seeker_url, "", class: "span4" %><br>
   <%= label_tag :job_descrip_url, "Job Description URL" %>
   <%= text_field_tag :job_descrip_url, "", class: "span4" %><br>
-  <%= submit_tag "Compare!", :class => 'btn btn-success' %>
 <% end %>
