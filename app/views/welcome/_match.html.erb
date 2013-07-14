@@ -1,11 +1,10 @@
-<h3>Job Seeker to Open Position Comparison</h3>
+<h3 class="text-info">Job Seeker to Open Position Comparison</h3>
 <div>
 	<div style="text-align: left;">
-		<strong><em><%= @job_seeker_url_words.count %> most frequently appearing words</em></strong>
-		<br>
-		Note:  Stop words such as [the, and, is, I,] have been removed.
+		Below are the <%= @job_seeker_url_words.count %> most frequently appearing words in each data set.		Note:  "Stop words" such as [the, and, is, I] have been removed.
+		<h5 class="text-warning">Use your mouse to drag and reorder the list items. For example, drag to align matched words or synonyms.</h5>
 	</div>
-	<br /><br />
+	<hr />
 	<script>
 		$(document).ready(function() {
 			$(".sortable").sortable();
