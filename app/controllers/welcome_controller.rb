@@ -1,4 +1,7 @@
 class WelcomeController < ApplicationController
+	before_filter :authenticate_user!
+	# before_filter :authenticate_user!, except: [:index, :show]
+
 
 	def index
   		@comparison = Url.new

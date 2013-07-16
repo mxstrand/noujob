@@ -25,6 +25,15 @@
             <ul class="nav" role="navigation">
               <li><%= link_to "About Us", "/welcome/aboutus" %></li>
             </ul>
+            <nav class="pull-right">
+              <% if user_signed_in? %>
+              <span class="label label-inverse">Signed in as <strong><em><%= current_user.email %></em></strong></span>
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'btn btn-small btn-danger' %>
+            <% else %>
+              <%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-small btn-success' %>
+              <%= link_to "Login", new_user_session_path, :class => 'btn btn-small' %>
+              <% end %>
+            </nav>
           </div><!--/.nav-collapse -->
         </div>
       </div>
