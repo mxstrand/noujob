@@ -10,6 +10,13 @@
 			$(".sortable").sortable();
 			$(".sortable").disableSelection();
 		});
+
+		var job_seeker_url_words = <%= @job_seeker_url_words.to_json.html_safe %>;
+
+		for (var i = 0; i < job_seeker_url_words.length; i++) {
+			// alert(job_seeker_url_words[i][0] + ' - ' + job_seeker_url_words[i][1]);
+		}
+
 	</script>
 	<div style="float: left; width: 50%;">
 		<ul class="sortable" style="list-style-type: none;">
