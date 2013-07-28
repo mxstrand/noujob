@@ -1,84 +1,79 @@
 <h3 class="text-info">Job Seeker to Open Position Comparison</h3>
 <div>
 	<div style="text-align: left;">
+		<div class="pull-right">
+			<%= link_to "Switch", '#', :class => 'btn btn-small btn-success', :id => 'switch-button', :style => 'margin-top: 30px;' %>
+		</div>
 		Below are the <%= @job_seeker_url_words.count %> most frequently appearing words in each data set.		Note:  "Stop words" such as [the, and, is, I] have been removed.
 		<h5 class="text-warning">Use your mouse to drag and reorder the list items. For example, drag to align matched words or synonyms.</h5>
 	</div>
 	<hr />
 	<script>
 		$(document).ready(function() {
-			$(".sortable").sortable();
-			$(".sortable").disableSelection();
+			// $(".sortable").sortable();
+			// $(".sortable").disableSelection();
 		});
 
 		var job_seeker_url_words = <%= @job_seeker_url_words.to_json.html_safe %>;
+		var job_description_url_words = <%= @job_descrip_url_words.to_json.html_safe %>;
+		var highest_count = <%= @highest_count %>;
+		var max_graph_width = 340;
 
-		for (var i = 0; i < job_seeker_url_words.length; i++) {
-			// alert(job_seeker_url_words[i][0] + ' - ' + job_seeker_url_words[i][1]);
-		}
+		$(document).ready(function() {
+			draw_angel_wings($('.angel-wing-left .graph-list'), $('.angel-wing-right .graph-list'), job_seeker_url_words, job_description_url_words, highest_count, max_graph_width);
+		});
+
+		$(document).ready(function() {
+			var switched = false;
+
+			$('#switch-button').click(function() {
+				if (switched) {
+					draw_angel_wings($('.angel-wing-left .graph-list'), $('.angel-wing-right .graph-list'), job_seeker_url_words, job_description_url_words, highest_count, max_graph_width);
+					switched = false;
+				}
+				else {
+					var reordered_job_description_url_words = Array();
+					var not_found_url_words = Array();
+
+					for (var i = 0; i < job_seeker_url_words.length; i++) {
+						var seeker_row = job_seeker_url_words[i];
+						var found = false;
+
+						for (var j = 0; j < job_description_url_words.length; j++) {
+							var description_row = job_description_url_words[j];
+
+							if (seeker_row[0] == description_row[0]) {
+								found = true;
+								reordered_job_description_url_words[i] = description_row;
+								not_found_url_words.push(job_description_url_words[i]);
+								break;
+							}
+						}
+
+						if (!found) {
+							reordered_job_description_url_words[i] = ['<em>not found</em>', '0'];
+						}
+					}
+
+					reordered_job_description_url_words = reordered_job_description_url_words.concat(not_found_url_words);
+
+					draw_angel_wings($('.angel-wing-left .graph-list'), $('.angel-wing-right .graph-list'), job_seeker_url_words, reordered_job_description_url_words, highest_count, max_graph_width);
+
+					switched = true;
+				}
+
+				return false;
+			});
+		});
 
 	</script>
-	<div style="float: left; width: 50%;">
-		<ul class="sortable" style="list-style-type: none;">
-			<% @job_seeker_url_words.each do |element| %>
-				<li>
-					<div>
-						<div style="float: right; height: 35px; width: 100px; text-align: left; padding-left: 10px;">
-							<div style="padding-top: 5px;">
-								<%= element[0] %>
-							</div>
-						</div>
-						<%
-							# Calculate with
-							# First maximum width
-							width = ((element[1] * 340) / @highest_count).to_i
-							# See if it's too small then give it a minimum width
-							if (width < 25)
-								width = 25
-							end
-						%>
-						<div style="height: 30px; float: right; text-align: right;">
-							<div style="height: 30px; width: <%= width %>px; background-color: <%= cycle("#00bfff", "#1e90ff") %>; float: right; border-radius: 3px; box-shadow: 0px 0px 2px #CCCCCC;">
-								<div style="float: left; padding-left: 5px; padding-top: 5px; color: white;">
-									<%= element[1] %>
-								</div>
-							</div>
-						</div>
-						<div style="clear: both;"></div>
-					</div>
-				</li>
-			<% end %>
+	<div class="angel-wing-left">
+		<ul class="sortable graph-list">
 		</ul>
 	</div>
 	
-	<div style="float: right; width: 50%;">
-		<ul class="sortable" style="list-style-type: none;">
-			<% @job_descrip_url_words.each do |element| %>
-				<li>
-					<div>
-						<div style="float: left; height: 35px; width: 100px; text-align: right; padding-right: 10px;">
-							<div style="padding-top: 5px;">
-								<%= element[0] %>
-							</div>
-						</div>
-						<%
-							# Calculate with
-							# First maximum width
-							width = ((element[1] * 340) / @highest_count).to_i
-							# See if it's too small then give it a minimum width
-							if (width < 25)
-								width = 25
-							end
-						%>
-						<div style="height: 30px; width: <%= width %>px; background-color: <%= cycle("#1e90ff", "#00bfff") %>; float: left; border-radius: 3px; box-shadow: 0px 0px 2px #CCCCCC;">
-							<div style="float: right; padding-right: 5px; padding-top: 5px; color: white;">
-								<%= element[1] %>
-							</div>
-						</div>
-						<div style="clear: both;"></div>
-					</div>
-				</li>
-			<% end %>
+	<div class="angel-wing-right">
+		<ul class="sortable graph-list">
 		</ul>
 	</div>
 	<div style="clear: both;"></div>

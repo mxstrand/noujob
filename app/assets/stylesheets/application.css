@@ -11,3 +11,79 @@
  *= require_self
  *= require_tree .
  */
+
+.angel-wing-left {
+	float: left;
+	width: 50%;
+}
+
+.angel-wing-right {
+	float: right;
+	width: 50%;
+}
+
+.angel-wing-left .word {
+	float: right;
+	height: 35px;
+	width: 100px; 
+	text-align: left; 
+	padding-left: 10px;
+}
+
+.angel-wing-right .word {
+	float: left; 
+	height: 35px; 
+	width: 100px; 
+	text-align: right; 
+	padding-right: 10px;
+}
+
+.angel-wing-left .word-count {
+	float: left; 
+	padding-left: 5px; 
+	padding-top: 5px; 
+	color: white;
+}
+
+.angel-wing-right .word-count {
+	float: right; 
+	padding-right: 5px; 
+	padding-top: 5px; 
+	color: white;
+}
+
+.word .word-container {
+	padding-top: 5px;
+}
+
+.angel-wing-left .row-wrapper {
+	height: 30px;
+	float: right;
+	text-align: right;
+}
+
+.angel-wing-left .graph {
+	height: 30px; 
+	float: right; 
+	border-radius: 3px; 
+	box-shadow: 0px 0px 2px #CCCCCC;
+}
+
+.angel-wing-right .graph {
+	height: 30px; 
+	float: left; 
+	border-radius: 3px; 
+	box-shadow: 0px 0px 2px #CCCCCC;
+}
+
+.graph-list {
+	list-style-type: none;
+}
+
+.graph-list .even {
+	background-color: #1e90ff;
+}
+
+.graph-list .odd {
+	background-color: #00bfff;
+}
