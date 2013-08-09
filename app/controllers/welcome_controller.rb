@@ -2,7 +2,7 @@ class WelcomeController < ApplicationController
 	before_filter :authenticate_user!, except: [:index, :aboutus]
 	
 	def index
-  		@comparison = Url.new
+  	@comparison = Url.new
 	end
 
   	def aboutus
